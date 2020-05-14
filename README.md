@@ -129,7 +129,7 @@ These two methods are the most recommanded ways to avoid any extra re-rendering.
 ### passing parameters:
  Best way to pass parameters to event handlers
  
- <Button onClick = {this.onClick.bind(this,arg)}> </Button>
+ `<Button onClick = {this.onClick.bind(this,arg)}> </Button>`
 
 
 # To be continued
