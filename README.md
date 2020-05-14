@@ -1,68 +1,136 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+In this project we are going to learn step by step the infamous Frontend Library React Js.
 
-In the project directory, you can run:
+If you want to start a project from scratch then proceeds, after all, I want you to be able to do everything on your own.
+
+This tutorial is recommanded for those who already know about React but are still struggling to grasp its fundamentals like myself!
+Hopefully this repository will be updated regularly.
+
+I'll make it as short as possible without forgetting the most important things! Less Time more Value!
+# Pre requisites
+HTML, CSS, Javascript ES6, DOM
+
+# My way of learning
+
+1) Watch a crash course, try to absorb as much as I can
+2) chunking the topic and learning step by step each chunk
+3) Once the fundamentals are grasped, nothing can stop me actually
+
+# Get started
+First download create-react-app using npm
+
+### `npm i create-react-app`
+
+Move to the folder of your project and type
+
+### `create-react-app .`
+
+or you can define a folder
+
+### `create-react-app my-app`
+
+To run the app in the development mode.<br />
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+Open VS CODE and let's start coding!
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `CTRL + K + S`
 
-### `npm run build`
+Allows you to save all files in your project directory.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+We recommand that you delete the content of APP.css, index.css, logo.svg etc. 
+So you start from scratch like what I did!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Component and Props
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+React Components are simply Javascript functions that take `props` as their input and returns a JSX element.
+Let's say JSX is simply HTML written and understood by Javascript:
 
-### `npm run eject`
+`let element = <h1>Something</h1>`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Let's create our first component. Create a folder called component in src folder. 
+[INSERT ADVICE ABOUT A VERY GOOD EXTENSION IN VS CODE THAT ADDS REACT SNIPPETS]
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Rendering in React
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1) We call App.js render(), our main interface of the application with the component <Something name="Khaled"/>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2) React calls the component Something with {name:"Khaled"} as the props.
 
-## Learn More
+3) Our component Something returns `<h1> Hello, Khaled </h1>`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4) React updates the DOM to match the change made to Something.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Notes
 
-### Code Splitting
+Don't be afraid to modularize your components, use props!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## `CTRL + H` 
 
-### Analyzing the Bundle Size
+Find and replace all in VS CODE
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+TypeError: Cannot read property 'props' of undefined. 
+Be careful while using props. Pass props to the argument of a React functional component or the constructor of a React class component.
 
-### Making a Progressive Web App
+A single strict rule of React:
+All React components must act like pure functions with respect to their props. 
+It means props are read-only. Pure functions do not attempt to change their input.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+# State and Lifecycle
 
-### Advanced Configuration
+## Adding local state (we need a React class component rcc)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+1) replace `this.props` with `this.state`.
+2) `constructor(props) { super(props); this.state={ assign props to state here};}`
 
-### Deployment
+## Lifecycle methods
+Mounting and Unmounting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+componentDidMount(): run after the component has been rendered by the DOM.
 
-### `npm run build` fails to minify
+### Handling state correctly:
+- Do not modify state directly, use setState
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- State Updates may be asynchronous, so using both this.props and this.state may fail to update,
+use setState((state,props)=>{})
+
+- The Data flows down: neither parent nor child components can know if a certain component is stateful or stateless and they shouldn't care. 
+=> state is encapsulated.
+
+TOP-DOWN, unidirectional data flow, Waterfall
+
+# Handling Events
+
+Similar to the classic way
+
+`function handleClick(e){
+  e.preventDefault();
+  console.log('it works');
+`
+
+You need to bind your event handlers so that they work in the callback.
+
+The meaning of `this` in JSX is very important. In JS, class methods are not bound by default. 
+If you forget to bind, `this` will be undefined when the function is actually called.
+
+Without ES arrow expression => you should bind like this: this.handleClick = this.handleClick.bind(this)
+
+class field syntax => handleClick = (e) => {}
+
+These two methods are the most recommanded ways to avoid any extra re-rendering.
+
+### passing parameters:
+ Best way to pass parameters to event handlers
+ 
+ <Button onClick = {this.onClick.bind(this,arg)}> </Button>
+
+
+# To be continued
+This document is not finished yet! Need more additions and refactoring!
