@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Hello from './component/Hello.js'
+import Avatar from './component/Avatar'
+import UserInfo from './component/UserInfo'
+import Clock from './component/Clock'
 
 function App() {
+  const user = {
+    name:'Khaled',
+    role:'Forgotten Hero',
+    smily:':)',
+    age:'23',
+    place:'Ariana'
+  }
+  console.log('in App',user)
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       Hello World 
       </header>
+      <Hello name="Khaled"/>
+      <Avatar user={user}/>
+      <UserInfo user={user}/>
+      <Clock/>
+      <footer className="App-footer">Khaled is Learning 2020</footer>
     </div>
   );
 }
